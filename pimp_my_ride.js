@@ -13,7 +13,7 @@ function parseTrip(trip) {
     return prospect;
 }
 
-parseTrip(tripToParse);
+//parseTrip(tripToParse);
 
 /* Etape 2 : Utilisez la fonction parseTrip(trip) dans une autre fonction parseTrips(trips) prenant en entrée une journée 
 complète (donc plusieurs lignes) et retournant une liste de structures trips définies précédemment  ([]). */
@@ -48,14 +48,51 @@ function getTripsPrice(trips) {
     return sumPrices;
 }
 
-getTripsPrice(tripsToParse);
+//getTripsPrice(tripsToParse);
 
 /* Etape 4 : Créez une fonction `checkCompatibility(tripA, tripB)` qui comparent deux structures `voyages` et 
 retourne un booléen déterminant si les structures sont compatibles ou non.
 Il s'agit de déterminer si un vol (représenté par une structure `trips`) n'empiète pas sur les horaires d'un autre. */
 
+function checkCompatibility(tripA, tripB) {
+    //tripA = parseTrip(tripA);
+    //tripB = parseTrip(tripB);
+    let compatibility = false;
+    if (
+        parseInt(tripA.start) + parseInt(tripA.duration) <=
+        parseInt(tripB.start)
+    ) {
+        compatibility = true;
+    }
+    //console.log(compatibility);
+    return compatibility;
+}
+
+//checkCompatibility("Roger 2 3 10", "Pongo 5 1 14");
+
 /* Etape 5 : Développez une fonction findCompatibilities(trips) qui retourne, à partir d'une liste de voyages, tous les 
 ensembles de voyages compatibles les uns avec les autres. */
+
+function findCompatibilities(trips) {
+    let tripObjects = parseTrips(trips);
+    //console.log(tripObjects[1])
+    let compatibilityArray = [];
+    for (let i = 0; i < tripObjects.length; i++) {
+        for (let j = 0; j < tripObjects.length; j++) {
+            if (i != j) {
+                if (checkCompatibility(tripObjects[i], tripObjects[j])) {
+                    let tempArray = [];
+                    tempArray.push(tripObjects[i], tripObjects[j]);
+                    compatibilityArray.push(tempArray);
+                }
+            }
+        }
+    }
+    console.log(compatibilityArray);
+    return compatibilityArray;
+}
+
+findCompatibilities(tripsToParse);
 
 /* Etape 6 : Développez une dernière fonction findBestPrice(trips), qui renverra le combo ou le voyage
  seul qui rapportera le plus à votre entreprise. */
