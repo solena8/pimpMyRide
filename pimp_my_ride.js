@@ -2,15 +2,14 @@ let tripToParse = "Perdita 8 10 8";
 
 /* étape 1 : rend une ligne du même format que les lignes de l'exemple, la décompose en mot 
 (séparés par un espace) puis range ces mots dans une structure de donnée */
+
 function parseTrip(trip) {
     const prospect = new Object();
     trip = trip.split(" ");
-    //console.log(trip);
     prospect.client = trip[0];
     prospect.start = trip[1];
     prospect.duration = trip[2];
     prospect.price = trip[3];
-    //console.log(prospect);
     return prospect;
 }
 
@@ -29,10 +28,8 @@ let tripsToParse = [
 function parseTrips(trips) {
     const prospects = [];
     for (trip of trips) {
-        //console.log(trip);
         prospects.push(parseTrip(trip));
     }
-    //console.log(prospects);
     return prospects;
 }
 
@@ -52,3 +49,13 @@ function getTripsPrice(trips) {
 }
 
 getTripsPrice(tripsToParse);
+
+/* Etape 4 : Créez une fonction `checkCompatibility(tripA, tripB)` qui comparent deux structures `voyages` et 
+retourne un booléen déterminant si les structures sont compatibles ou non.
+Il s'agit de déterminer si un vol (représenté par une structure `trips`) n'empiète pas sur les horaires d'un autre. */
+
+/* Etape 5 : Développez une fonction findCompatibilities(trips) qui retourne, à partir d'une liste de voyages, tous les 
+ensembles de voyages compatibles les uns avec les autres. */
+
+/* Etape 6 : Développez une dernière fonction findBestPrice(trips), qui renverra le combo ou le voyage
+ seul qui rapportera le plus à votre entreprise. */
