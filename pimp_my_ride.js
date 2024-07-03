@@ -7,9 +7,9 @@ function parseTrip(trip) {
     const prospect = new Object();
     trip = trip.split(" ");
     prospect.client = trip[0];
-    prospect.start = trip[1];
-    prospect.duration = trip[2];
-    prospect.price = trip[3];
+    prospect.start = parseInt(trip[1]);
+    prospect.duration = parseInt(trip[2]);
+    prospect.price = parseInt(trip[3]);
     return prospect;
 }
 
@@ -41,7 +41,7 @@ la somme des prix de cet ensemble de `voyages`. */
 function getTripsPrice(trips) {
     let sumPrices = 0;
     for (trip of trips) {
-        sumPrices += parseInt(trip.price);
+        sumPrices += trip.price;
         //console.log(typeof sumPrices, sumPrices);
     }
     return sumPrices;
@@ -57,10 +57,7 @@ function checkCompatibility(tripA, tripB) {
     //tripA = parseTrip(tripA);
     //tripB = parseTrip(tripB);
     let compatibility = false;
-    if (
-        parseInt(tripA.start) + parseInt(tripA.duration) <=
-        parseInt(tripB.start)
-    ) {
+    if (tripA.start + tripA.duration <= tripB.start) {
         compatibility = true;
     }
     //console.log(compatibility);
