@@ -40,9 +40,8 @@ la somme des prix de cet ensemble de `voyages`. */
 
 function getTripsPrice(trips) {
     let sumPrices = 0;
-    let prospectsArray = trips;
-    for (prospect of prospectsArray) {
-        sumPrices += parseInt(prospect.price);
+    for (trip of trips) {
+        sumPrices += parseInt(trip.price);
         //console.log(typeof sumPrices, sumPrices);
     }
     return sumPrices;
@@ -88,7 +87,7 @@ function findCompatibilities(trips) {
         }
     }
     //compatibilityArray.push(trip);
-    console.log(compatibilityArray);
+    //console.log(compatibilityArray);
     return compatibilityArray;
 }
 
@@ -112,4 +111,4 @@ function findBestPrice(trips) {
     return bestCombo;
 }
 
-//findBestPrice(tripsToParse);
+findBestPrice(tripsToParse);
