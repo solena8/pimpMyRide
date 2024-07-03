@@ -40,15 +40,15 @@ la somme des prix de cet ensemble de `voyages`. */
 
 function getTripsPrice(trips) {
     let sumPrices = 0;
-    let prospectsArray = parseTrips(trips);
+    let prospectsArray = trips;
     for (prospect of prospectsArray) {
         sumPrices += parseInt(prospect.price);
-        console.log(sumPrices);
+        //console.log(typeof sumPrices, sumPrices);
     }
     return sumPrices;
 }
 
-//getTripsPrice(tripsToParse);
+//getTripsPrice(parseTrips(tripsToParse));
 
 /* Etape 4 : Créez une fonction `checkCompatibility(tripA, tripB)` qui comparent deux structures `voyages` et 
 retourne un booléen déterminant si les structures sont compatibles ou non.
@@ -76,18 +76,18 @@ ensembles de voyages compatibles les uns avec les autres. */
 function findCompatibilities(trips) {
     let tripObjects = parseTrips(trips);
     //console.log(tripObjects[1])
-    let compatibilityArray = [];
+    let compatibilityArray = []; //est-ce qu'il y a quelque chose à faire pour éviter de stocker deux fois la même variable ?
     for (let i = 0; i < tripObjects.length; i++) {
+        compatibilityArray.push([tripObjects[i]]);
         for (let j = 0; j < tripObjects.length; j++) {
-            if (i != j) {
-                if (checkCompatibility(tripObjects[i], tripObjects[j])) {
-                    let tempArray = [];
-                    tempArray.push(tripObjects[i], tripObjects[j]);
-                    compatibilityArray.push(tempArray);
-                }
+            if (checkCompatibility(tripObjects[i], tripObjects[j])) {
+                let tempArray = [];
+                tempArray.push(tripObjects[i], tripObjects[j]);
+                compatibilityArray.push(tempArray);
             }
         }
     }
+    //compatibilityArray.push(trip);
     console.log(compatibilityArray);
     return compatibilityArray;
 }
@@ -96,3 +96,20 @@ findCompatibilities(tripsToParse);
 
 /* Etape 6 : Développez une dernière fonction findBestPrice(trips), qui renverra le combo ou le voyage
  seul qui rapportera le plus à votre entreprise. */
+
+function findBestPrice(trips) {
+    let compatibilities = findCompatibilities(trips);
+    let maxPrice = 0;
+    let bestCombo = [];
+    for (i = 0; i < compatibilities.length; i++) {
+        let temp = getTripsPrice(compatibilities[i]);
+        if (temp > maxPrice) {
+            maxPrice = temp;
+            bestCombo = compatibilities[i];
+        }
+    }
+    console.log(bestCombo);
+    return bestCombo;
+}
+
+//findBestPrice(tripsToParse);
