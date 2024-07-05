@@ -37,11 +37,15 @@ def get_trip_prices(trips: list) -> int:
 
 
 def check_compatibility(trip_a: dict, trip_b: dict) -> bool:
-    compatibility = False
-    if (trip_a["start"] + trip_a["duration"] <= trip_b["start"]
-            or trip_b["start"] + trip_b["duration"] <= trip_a["start"]):
-        compatibility = True
-    return compatibility
+    # Return condition
+    return trip_a["start"] + trip_a["duration"] <= trip_b["start"] \
+            or trip_b["start"] + trip_b["duration"] <= trip_a["start"]
+    # if (trip_a["start"] + trip_a["duration"] <= trip_b["start"]
+    #         or trip_b["start"] + trip_b["duration"] <= trip_a["start"]):
+    #     return True
+    # return False
+    #     compatibility = True
+    # return compatibility
 
 # print(check_compatibility({"client": 'Pongo', "start": 3, "duration": 7, "price": 14},
 #                                        {"client": 'Anita', "start": 16, "duration": 3, "price": 7}))
@@ -63,6 +67,7 @@ def find_best_price(trips: list) -> list:
     compatibilities = find_compatibilities(trips)
     max_price = 0
     best_combo = []
+    # iter list
     for x in range(len(compatibilities)):
         x_price = get_trip_prices(compatibilities[x])
         if x_price > max_price:

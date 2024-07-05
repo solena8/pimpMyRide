@@ -45,14 +45,10 @@ retourne un booléen déterminant si les structures sont compatibles ou non.
 Il s'agit de déterminer si un vol (représenté par une structure `trips`) n'empiète pas sur les horaires d'un autre. */
 
 function checkCompatibility(tripA, tripB) {
-    let compatibility = false;
-    if (
+    return (
         tripA.start + tripA.duration <= tripB.start ||
         tripB.start + tripB.duration <= tripA.start
-    ) {
-        compatibility = true;
-    }
-    return compatibility;
+    );
 }
 
 /* Etape 5 : Développez une fonction findCompatibilities(trips) qui retourne, à partir d'une liste de voyages, tous les 
@@ -62,7 +58,7 @@ function findCompatibilities(trips) {
     let compatibilityArray = [];
     for (let i = 0; i < trips.length; i++) {
         compatibilityArray.push([trips[i]]);
-        for (let j = i+1; j < trips.length; j++) {
+        for (let j = i + 1; j < trips.length; j++) {
             if (checkCompatibility(trips[i], trips[j])) {
                 compatibilityArray.push([trips[i], trips[j]]);
             }
