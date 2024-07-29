@@ -1,6 +1,6 @@
 # Pimp My Ride
 
-**Pimp My Ride** is a JavaScript program created as a school exercise at Ada Tech School. It parses trip data, checks compatibility, and finds the best price combinations.
+**Pimp My Ride** is a JavaScript and Python program created as a school exercise at Ada Tech School. It parses trip data, checks compatibility, and finds the best price combinations.
 
 ## Features
 
